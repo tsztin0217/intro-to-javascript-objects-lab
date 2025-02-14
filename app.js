@@ -50,7 +50,62 @@ Exercise 4
 Solve Exercise 4 here:
 */
 
+// first find out which pokemon are starters
+// for (let i = 0; i < pokemon.length; i++) {
+//     if (pokemon[i].starter === true) {
+//         console.log(pokemon[i].name);
+//     }
+// }
 
+/* output:
+Arcanine
+Bulbasaur
+Charmander
+Squirtle
+Pikachu
+*/
+
+// adding Pikachu to the party
+game.party.push('Pikachu');
+
+/*
+Exercise 5
+1. Choose three more Pokémon from the `pokemon` array and add them to your party.
+2. Consider different attributes like 'type' or 'HP' for your selection. Which array method will you use to add them?
+
+
+Solve Exercise 5 here:
+*/
+
+/*
+want to look at pokemon that are EITHER not starter, not electric since we already have pikachu,
+not bug because they're generally weak(my bias), AND all be tanky with hp above 100
+*/
+// pokemon.forEach(p => {
+//     switch(true) {
+//         case ((p.starter === false ||
+//             p.type !== 'electric' ||
+//             p.type !== 'bug') &&
+//             p.hp > 100):
+//                 console.log(`name: ${p.name}, type: ${p.type}, hp: ${p.hp}`);
+//     }
+// })
+
+/* ouput:
+name: Jigglypuff, type: normal, hp: 115
+name: Wigglytuff, type: normal, hp: 140
+name: Muk, type: poison, hp: 105
+name: Rhydon, type: ground, hp: 105
+name: Chansey, type: normal, hp: 250
+name: Kangaskhan, type: normal, hp: 105
+name: Lapras, type: water, hp: 130
+name: Jolteon, type: electric, hp: 130
+name: Snorlax, type: normal, hp: 160
+name: Mewtwo, type: psychic, hp: 106
+*/
+
+// adding MewTwo, Rhydon, and Snorlax!
+game.party.push['MewTwo', 'Rhydon', 'Snorlax'];
 
 
 
