@@ -219,3 +219,59 @@ game.catchPokemon = function(pokemonObj) {
 game.catchPokemon('Vulpix');
 
 console.log(game.items);
+
+
+
+/*
+Exercise 12
+1. Similar to Exercise 6, now complete gyms with a difficulty below 6. How will you approach this?
+ (change the value of `complete` in the qualifying objects from false to true).
+
+Solve Exercise 12 here:
+*/
+
+for (const gym of game.gyms) {
+    if (gym.difficulty < 6) {
+        gym.completed = true;
+    }
+}
+
+/*
+Exercise 13
+1. Create a `gymStatus` method in `game` to tally completed and incomplete gyms.
+2. How will you iterate through the `gyms` array and update the tally? Remember to log the final tally.
+
+This method should:
+  - Not accept any arguments.
+  - Initially create a constant `gymTally`, which is an object that has two 
+    properties: `completed` and `incomplete`, both of which are initially set to 0.
+  - Iterate through the objects in the `game.gyms` array and update the 
+    properties on `gymTally` as follows: 
+    - `completed` should count how many gyms in the array have a value of `true` 
+      for their `completed` property. 
+    - `incomplete` should count how many gyms in the array have a value of 
+      `false` for their `completed` property.
+  - Log the value of `gymTally`.
+  - The method should not return anything.
+
+For example, if five gym objects have a value of `true` on their `completed` property and three gym objects have a value of `false` on their `completed` property, the logged value would be: `{ completed: 5, incomplete: 3 }`.
+
+Solve Exercise 13 here:
+*/
+
+game.gymStatus = function() {
+   const gymTally = {
+        completed: 0,
+        incomplete: 0
+    };
+    for (const gym of this.gyms) {
+        if (gym.completed === true) {
+            gymTally.completed +=1;
+        } else {
+            gymTally.incomplete +=1;
+        }
+    }
+    console.log(gymTally);
+}
+
+game.gymStatus();
