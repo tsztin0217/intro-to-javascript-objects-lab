@@ -153,14 +153,48 @@ Exercise 8
 Solve Exercise 8 here:
 */
 
-for (const member of game.party) {
-    console.log(member);
-}
-
 // // alternative using array method
 // game.party.forEach(function(member) {
 //     console.log(member); 
 // });
 
+for (const member of game.party) {
+    console.log(member);
+}
 
+
+
+/*
+Exercise 9
+1. Can you print out all the starter Pokémon from the `pokemon` array?
+2. Think about how you can identify a starter Pokémon and then log their names.
+
+
+Solve Exercise 9 here:
+*/
+
+for (let i = 0; i < pokemon.length; i++) {
+    if (pokemon[i].starter === true) {
+        console.log(pokemon[i].name);
+    }
+}
+
+
+/*
+Exercise 10
+Create a method called `catchPokemon` and add it to the `game` object. You should not need to edit the original game object directly. This method should:
+  - Accept an object as a parameter called `pokemonObj`
+  - Add the `pokemonObj` to the `game.party` array.
+  - not return anything
+
+After writing this method, call it and pass in a Pokemon object of your choice from the `pokemon` data to catch it.
+
+Solve Exercise 10 here:
+*/
+
+game.catchPokemon = function(pokemonObj) {
+    game.party.push(pokemonObj);
+}
+
+game.catchPokemon('Eevee');
 
