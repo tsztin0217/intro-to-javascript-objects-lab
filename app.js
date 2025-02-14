@@ -275,3 +275,144 @@ game.gymStatus = function() {
 }
 
 game.gymStatus();
+
+
+/*
+Exercise 14
+1. Add a `partyCount` method to `game` that counts the number of Pokémon in your party.
+
+This method should:
+  - Not accept any arguments.
+  - Count the number of Pokemon in the party.
+  - return the found number of Pokemon in the party.
+
+Solve Exercise 14 here:
+*/
+
+game.partyCount = function() {
+    return this.party.length;
+}
+
+
+/*
+Exercise 15
+1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
+(change the value of `complete` in the qualifying objects from false to true).
+
+Solve Exercise 15 here:
+*/
+
+for (const gym of game.gyms) {
+    if (gym.difficulty < 8) {
+        gym.completed = true;
+    }
+}
+
+
+/*
+Exercise 16
+1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
+
+
+Solve Exercise 16 here:
+*/
+console.log(game);
+
+
+/*
+Exercise 17
+1. Arrange the Pokémon in `game.party` by their HP. The one with the highest HP should come first.
+2. You'll need to use the `.sort()` method. How does the compare function work in sorting numbers?
+
+
+Solve Exercise 17 here:
+*/
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort  
+// function getPokemonDataByName(name) {
+//     return pokemon.find(pokemon => pokemon.name.toLowerCase() === name.toLowerCase());
+//   }
+  
+//   // Function to sort the game.party based on HP (descending order) using map()
+//   function sortPartyByHP() {
+//     // Use map to create an array of objects containing name and HP
+//     const partyWithHP = game.party.map(pokemonName => {
+//       const pokemonData = getPokemonDataByName(pokemonName);
+//       return { name: pokemonName, hp: pokemonData.hp };
+//     });
+  
+//     // Sort the array by HP in descending order
+//     partyWithHP.sort((a, b) => b.hp - a.hp);
+  
+//     // Map the sorted Pokémon data back into the party names
+//     game.party = partyWithHP.map(pokemon => pokemon.name);
+  
+//     console.log('Sorted Party:', game.party);
+//   }
+  
+//   // Call the function to sort the party
+//   sortPartyByHP();
+
+
+// set up a function so later can use this to look up info
+// input name from game.party and look up its hp from pokemon data
+function getPokemonDataByName(name) {
+    // Loop through the pokemon array and return the first match
+    for (let i = 0; i < pokemon.length; i++) {
+      if (pokemon[i].name.toLowerCase() === name.toLowerCase()) {
+        return pokemon[i];
+      }
+    }
+   
+}
+// sort the game.party based on HP (descending order) using map()
+function sortPartyByHP() {
+    // create an array with pokemon names and hp
+    const partyWithHP = game.party.map(pokemonName => {
+      const pokemonData = getPokemonDataByName(pokemonName);
+      return { name: pokemonName, hp: pokemonData.hp };
+    });
+  
+    // sort the array by HP in descending order
+    partyWithHP.sort((a, b) => b.hp - a.hp);
+  
+    // map the sorted Pokémon data back into the party names
+    game.party = partyWithHP.map(pokemon => pokemon.name);
+  
+    console.log('Sorted Party:', game.party);
+}
+
+sortPartyByHP();
+
+
+/*
+Exercise 18
+Add a new property to the `game` object called `collection` and initialize its value to an empty array.
+
+Copy the `catchPokemon` method you wrote in Exercise Twelve and paste it below. Modify it so that:
+  - Ensure that no more than six Pokemon can be in the party at any time. 
+    Excess Pokemon should be placed in the `game.collection` array.
+  - It's up to you how to distribute Pokemon in a situation where more than six 
+    would be placed into the `game.party` array.
+
+Again, for this exercise, it's okay to have a negative number of pokeballs.
+
+After updating the method, use it by calling it and passing in a pokemon object of your choice from the `pokemon` data to catch it.
+
+Also, log the `game.items` array to confirm that the pokeball quantity is being decremented.
+
+Solve Exercise 18 here:
+*/
+game.collection  = [];
+
+game.catchPokemon = function(pokemonObj) {
+    if (game.party.length < 6) {
+        game.party.push(pokemonObj);
+    } else {
+        game.collection.push(pokemonObj);
+    }
+    game.items[1].quantity -= 1;
+}
+
+game.catchPokemon('Gloom');
+console.log(game.items);
