@@ -416,3 +416,77 @@ game.catchPokemon = function(pokemonObj) {
 
 game.catchPokemon('Gloom');
 console.log(game.items);
+
+
+/*
+Exercise 19
+Copy the `catchPokemon` method that you just wrote above, and paste it below. The time has come to make it so that we cannot catch a Pokemon when we do not have any pokeballs to catch it with. 
+
+Modify the method so that if there are no pokeballs a message will be displayed that there are not enough pokeballs to catch the desired Pokemon.
+
+Also, ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 19 here:
+*/
+
+game.catchPokemon = function(pokemonObj) {
+    if (game.items[1].quantity <= 0) {
+        console.log(`Not enough pokeballs to catch ${pokemonObj}.`)
+    } else {
+        if (game.party.length < 6) {
+            game.party.push(pokemonObj);
+        } else {
+            game.collection.push(pokemonObj);
+        }
+    game.items[1].quantity -= 1;
+    }
+}
+
+
+/*
+Exercise 20
+Copy the `catchPokemon` method that you just wrote above, and paste it below. 
+Modify is so that you can just pass in the name of a Pokemon instead of an entire object, 
+and the method will look up the Pokemon from the data set for you.
+
+The string passed in should be allowed to be any case (for example, 
+if the string 'PiKacHU' is passed to the function, 
+it should match to 'Pikachu' in the data set). 
+
+If there is not a match, then return a string noting that the selected Pokemon does not exist. 
+Ensure you do not decrement the pokeball count if an invalid Pokemon name is passed in, 
+and also ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 20 here:
+*/
+
+game.catchPokemon = function(pokemonName) {
+    let pokemonObj;
+    for (let i = 0; i < pokemon.length; i++) {
+        if (pokemon[i].name.toLowerCase() === pokemonName.toLowerCase()) {
+            pokemonObj = pokemon[i];
+        }
+    }
+
+    if (!pokemonObj) {
+        return `The selected Pokemon ${pokemonName} does not exist.`;
+    }
+
+    if (game.items[1].quantity <= 0) {
+        return `Not enough pokeballs to catch ${pokemonObj.name}.`; 
+    } else {
+        if (game.party.length < 6) {
+            game.party.push(pokemonObj);
+            game.items[1].quantity -= 1; 
+            return `${pokemonObj.name} was caught and added to your party.`;
+        } else {
+            game.collection.push(pokemonObj);
+            game.items[1].quantity -= 1; //
+            return `${pokemonObj.name} was caught and added to your collection.`;
+        }
+    }
+}
+
+console.log(game.catchPokemon('PiKacHU'));  
+
+
