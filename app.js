@@ -105,8 +105,8 @@ name: Mewtwo, type: psychic, hp: 106
 */
 
 // adding MewTwo, Rhydon, and Snorlax!
-game.party.push['MewTwo', 'Rhydon', 'Snorlax'];
+game.party.push('MewTwo', 'Rhydon', 'Snorlax');
 
-
+console.log(game)
 
   
