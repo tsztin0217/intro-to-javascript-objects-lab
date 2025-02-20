@@ -208,8 +208,9 @@ game.catchPokemon = function(pokemonObj) {
     game.party.push(pokemonObj);
 }
 
-game.catchPokemon(pokemon[130]);
-
+const vulpixIndex = findIndexByName('vulpix');
+game.catchPokemon(pokemon[vulpixIndex]);
+console.log(game.party)
 /*
 Exercise 11
 1. Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify it so that it also decreases the number of pokeballs in your inventory each time you catch a Pokémon.
@@ -407,7 +408,7 @@ game.catchPokemon = function(pokemonObj) {
     game.items[1].quantity -= 1;
 }
 
-game.catchPokemon('Gloom');
+game.catchPokemon(pokemon[45]);
 console.log(game.items);
 
 
