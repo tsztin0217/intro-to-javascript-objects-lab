@@ -70,7 +70,7 @@ const pikachuIndex = pokemon.findIndex(function(p) {
     return p.name.toLowerCase() === 'pikachu';
 });
 
-// console.log('pikachu index:', pikachuIndex);
+console.log('pikachu index:', pikachuIndex);
 
 game.party.push(pokemon[pikachuIndex]);
 
@@ -208,7 +208,7 @@ game.catchPokemon = function(pokemonObj) {
     game.party.push(pokemonObj);
 }
 
-game.catchPokemon('Eevee');
+game.catchPokemon(pokemon[130]);
 
 /*
 Exercise 11
@@ -228,7 +228,7 @@ game.catchPokemon = function(pokemonObj) {
     game.items[1].quantity -= 1;
 }
 
-game.catchPokemon('Vulpix');
+game.catchPokemon(pokemon[132]);
 
 console.log(game.items);
 
@@ -341,36 +341,41 @@ Solve Exercise 17 here:
 */
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort  
-
+// old solution before changing string to index:
 // set up a function so later can use this to look up info
 // input name from game.party and look up its hp from pokemon data
-function getPokemonDataByName(name) {
-    // Loop through the pokemon array and return the first match
-    for (let i = 0; i < pokemon.length; i++) {
-      if (pokemon[i].name.toLowerCase() === name.toLowerCase()) {
-        return pokemon[i];
-      }
-    }
+// function getPokemonDataByName(name) {
+//     // Loop through the pokemon array and return the first match
+//     for (let i = 0; i < pokemon.length; i++) {
+//       if (pokemon[i].name.toLowerCase() === name.toLowerCase()) {
+//         return pokemon[i];
+//       }
+//     }
    
-}
-// sort the game.party based on HP (descending order) using map()
-function sortPartyByHP() {
-    // create an array with pokemon names and hp
-    const partyWithHP = game.party.map(pokemonName => {
-      const pokemonData = getPokemonDataByName(pokemonName);
-      return { name: pokemonName, hp: pokemonData.hp };
-    });
+// }
+// // sort the game.party based on HP (descending order) using map()
+// function sortPartyByHP() {
+//     // create an array with pokemon names and hp
+//     const partyWithHP = game.party.map(pokemonName => {
+//       const pokemonData = getPokemonDataByName(pokemonName);
+//       return { name: pokemonName, hp: pokemonData.hp };
+//     });
   
-    // sort the array by HP in descending order
-    partyWithHP.sort((a, b) => b.hp - a.hp);
+//     // sort the array by HP in descending order
+//     partyWithHP.sort((a, b) => b.hp - a.hp);
   
-    // map the sorted Pokémon data back into the party names
-    game.party = partyWithHP.map(pokemon => pokemon.name);
+//     // map the sorted Pokémon data back into the party names
+//     game.party = partyWithHP.map(pokemon => pokemon.name);
   
-    console.log('Sorted Party:', game.party);
-}
+//     console.log('Sorted Party:', game.party);
+// }
+// sortPartyByHP();
+// new solution after changing pokemon in party by inserting indexes:
 
-sortPartyByHP();
+game.party.sort((a, b) => b.hp - a.hp);
+console.log(game.party);
+
+
 
 
 /*
@@ -475,7 +480,7 @@ game.catchPokemon = function(pokemonName) {
     }
 }
 
-console.log(game.catchPokemon('PiKacHU'));  
+// console.log(game.catchPokemon('PiKacHU'));  
 
 
 /*
@@ -516,3 +521,5 @@ pokemon.forEach(pokemon => {
 })
 
 console.log(pokemonSortedByType);
+
+console.log(game.party)
