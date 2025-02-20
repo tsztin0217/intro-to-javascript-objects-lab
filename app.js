@@ -66,7 +66,13 @@ Pikachu
 */
 
 // adding Pikachu to the party
-game.party.push('Pikachu');
+const pikachuIndex = pokemon.findIndex(function(p) {
+    return p.name.toLowerCase() === 'pikachu';
+});
+
+// console.log('pikachu index:', pikachuIndex);
+
+game.party.push(pokemon[pikachuIndex]);
 
 /*
 Exercise 5
