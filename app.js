@@ -111,7 +111,13 @@ name: Mewtwo, type: psychic, hp: 106
 */
 
 // adding MewTwo, Rhydon, and Snorlax!
-game.party.push('MewTwo', 'Rhydon', 'Snorlax');
+const findIndexByName = (name) => pokemon.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
+
+const mewtwoIndex = findIndexByName('mewtwo');
+const rhydonIndex = findIndexByName('rhydon');
+const snorlaxIndex = findIndexByName('snorlax');
+
+game.party.push(pokemon[mewtwoIndex], pokemon[rhydonIndex], pokemon[snorlaxIndex]);
 
 /*
 Exercise 6
@@ -146,8 +152,8 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 
 Solve Exercise 7 here:
 */
-
-game.party.splice(0, 1, 'Raichu');
+const raichuIndex = findIndexByName('raichu');
+game.party.splice(0, 1, pokemon[raichuIndex]);
 console.log(game);
 
 
